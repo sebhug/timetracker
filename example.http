@@ -1,0 +1,46 @@
+GET http://localhost:8080/actuator
+
+###
+
+GET http://localhost:8080/actuator/info
+
+###
+
+GET http://localhost:8080/employees/${employee}
+
+###
+
+POST http://localhost:8080/employees
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Paul Panzer"
+}
+
+###
+
+POST http://localhost:8080/timerecords
+Accept: application/json
+Content-Type: application/json
+
+{
+  "minutes" : 10,
+  "recordDate" : "2009-06-30T00:00:00+02:00",
+  "employeeId" : "${employee}"
+
+}
+
+###
+
+GET  http://localhost:8080/timerecords/${timerecord}
+
+###
+
+DELETE http://localhost:8080/employees/${employee}
+
+###
+
+GET http://localhost:8080/actuator
+
+###
