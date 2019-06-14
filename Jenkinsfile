@@ -52,8 +52,20 @@ pipeline {
 			when {
 				branch 'master'
 			}
+
 			steps {
                 step([$class: 'ArtifactArchiver', artifacts: 'target/*.jar', fingerprint: true])
+			}
+
+		}
+
+		stage('Docker Build') {
+			when {
+				branch 'master'
+			}
+
+			steps {
+               sh 'docker build -t flaviait/timetracker:latest .'
 			}
 		}
 	}
