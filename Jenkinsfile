@@ -47,5 +47,14 @@ pipeline {
 			}
 
 		}
+		
+		stage('Archive Artifact') {
+			when {
+				branch 'master'
+			}
+			steps {
+                step([$class: 'ArtifactArchiver', artifacts: 'target/*.jar', fingerprint: true])
+			}
+		}
 	}
 }
