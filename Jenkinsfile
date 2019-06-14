@@ -20,5 +20,17 @@ pipeline {
 				
 			}
 		}
+
+		stage('Only Master') {
+
+			when {
+				branch 'master'
+			}
+		
+			steps {
+				echo 'I am the master'
+			}
+
+		}
 	}
 }
