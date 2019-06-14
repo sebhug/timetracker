@@ -65,7 +65,8 @@ pipeline {
 			}
 
 			steps {
-               sh 'docker build -t flaviait/timetracker:latest .'
+               sh "docker build -t flaviait/timetracker:${BUILD_NUMBER} ."
+			   sh "docker tag flaviait/timetracker:${BUILD_NUMBER} flaviait/timetracker:latest"
 			}
 		}
 	}
