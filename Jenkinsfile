@@ -25,6 +25,15 @@ pipeline {
 				sh './mvnw clean package'
 				
 			}
+
+			post {
+
+				always {
+
+					junit 'target/surefire-reports/*.xml'
+
+				}
+			}
 		}
 
 		stage('Only Master') {
