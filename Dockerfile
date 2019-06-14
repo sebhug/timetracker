@@ -1,5 +1,3 @@
-FROM 
-
 FROM maven:3.6.0-jdk-12-alpine as builder
 COPY ./ /usr/src/app
 RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests=true
