@@ -20,6 +20,7 @@ pipeline {
 		}
 
 		stage('Build') {
+
 			steps {
 			
 				sh './mvnw clean package'
@@ -39,34 +40,48 @@ pipeline {
 		stage('Only Master') {
 
 			when {
+				
 				branch 'master'
+				
 			}
 		
 			steps {
+				
 				echo 'I am the master'
+				
 			}
 
 		}
 		
 		stage('Archive Artifact') {
+
 			when {
+				
 				branch 'master'
+				
 			}
 
 			steps {
+				
                 step([$class: 'ArtifactArchiver', artifacts: 'target/*.jar', fingerprint: true])
+				
 			}
 
 		}
 
 		stage('Docker Build') {
+			
 			when {
+				
 				branch 'master'
+				
 			}
 
 			steps {
-               sh "docker build -t flaviait/timetracker:${BUILD_NUMBER} ."
-			   sh "docker tag flaviait/timetracker:${BUILD_NUMBER} flaviait/timetracker:latest"
+				
+               sh "docker build -t flaviait/timetracker:latest ."
+			   sh "docker tag flaviait/timetracker:latest flaviait/timetracker:${BUILD_NUMBER}"
+				
 			}
 		}
 	}
